@@ -21,7 +21,7 @@ void dequeue(struct queue *q){
     printf("Queue underflow\n");
   }else{
     int x = q -> item[q->front];
-    printf("Deququed Item: %d\n",x);
+    printf("Dequeued Item: %d\n",x);
     q -> front++;
   }
 }
