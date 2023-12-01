@@ -3,6 +3,7 @@
 
 struct Node{
   int data;
+  struct Node *prev;
   struct Node *next;
 }*head;
 
@@ -13,9 +14,11 @@ void insert(){
   struct Node *new_node = (struct Node*)malloc(sizeof(struct Node));
   new_node -> data = new_data;
   new_node -> next = NULL;
+  new_node -> prev = NULL;
   if (head == NULL){
     head = new_node;
   }else{
+    head -> prev = new_node;
     new_node -> next = head;
     head = new_node;
   }
@@ -28,6 +31,7 @@ void insert_end(){
   struct Node *new_node = (struct Node*)malloc(sizeof(struct Node));
   new_node -> data = new_data;
   new_node -> next = NULL;
+  new_node -> prev = NULL;
   if (head == NULL){
     head = new_node;
   }else{
@@ -35,27 +39,7 @@ void insert_end(){
     while (temp -> next != NULL)
       temp = temp->next;
     temp -> next = new_node;
-  }
-}
-
-void insert_at_x(){
-  int pos;
-  int new_data;
-  printf("Enter the number:");
-  scanf("%d",&new_data);
-  printf("Enter the pos:");
-  scanf("%d",&pos);
-  struct Node *new_node = (struct Node*)malloc(sizeof(struct Node));
-  new_node -> data = new_data;
-  if (head == NULL){
-    head = new_node;
-  }else{
-    struct Node *temp = head;
-    for (int i=0;i<pos-1;i++){
-      temp = temp->next;
-    }
-    new_node -> next = temp -> next;
-    temp -> next = new_node;
+    new_node -> prev = temp;
   }
 }
 
@@ -78,6 +62,7 @@ void delete(){
   }
   struct Node *temp = head;
   head = head -> next;
+  head -> prev = NULL;
   printf("Removed:|%d|",temp->data);
   free(temp); 
 }
@@ -90,33 +75,12 @@ void delete_end(){
   struct Node *temp1;
   struct Node *temp = head;
   while (temp -> next != NULL){
-    temp1 = temp;
     temp = temp -> next;
   }
-  temp1 -> next = NULL;
+  temp1 -> prev -> next = NULL;
   printf("Removed:|%d|",temp->data);
   free(temp);
 }
-
-void delete_at_x(){
-  if (head == NULL){
-    printf("List doesnt exist.\n");
-    return;
-  }
-  struct Node *temp1;
-  int pos;
-  printf("Enter the pos:");
-  scanf("%d",&pos);
-    struct Node *temp = head;
-  for (int i=0;i<pos;i++){
-    temp1 = temp;
-    temp = temp -> next;
-  }
-  temp1 -> next = temp -> next;
-  printf("Removed:|%d|",temp->data);
-  free(temp);
-}
-
 
 int main(){
   head = NULL;
@@ -124,14 +88,12 @@ int main(){
   int choice;
   printf("\n1)Insert\n");
   printf("2)Insert at end\n");
-  printf("3)Insert at specific position\n");
-  printf("4)Display\n");
-  printf("5)Delete\n");
-  printf("6)Delete from end\n");
-  printf("7)Delete from specific position\n");
-  printf("8)Exit\n");
+  printf("3)Display\n");
+  printf("4)Delete\n");
+  printf("5)Delete from end\n");
+  printf("6)Exit\n");
 
-  while(1){
+  while(1){ 
     printf("\nEnter your choice:");
     scanf("%d",&choice);
     switch (choice) {
@@ -144,21 +106,18 @@ int main(){
         break;
 
       case 3:
-        insert_at_x();
-        break;
-      case 4:
         display();
         break;
-      case 5:
+
+      case 4:
         delete();
         break;
-      case 6:
+
+      case 5:
         delete_end();
         break;
-      case 7:
-        delete_at_x();
-        break;
-      case 8:
+
+      case 6:
         exit(0);
         break;
     }

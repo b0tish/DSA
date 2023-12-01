@@ -2,10 +2,10 @@
 
 int search(int a[],int key,int l,int h){
   if (h >= l){
-    int mid = (l+h)/2;
+    int mid = l+(h-l)/2;
 
     if (key == a[mid])
-      return mid+1;
+      return mid;
 
     if (key < a[mid])
       return search(a,key,l,mid-1);
@@ -16,9 +16,14 @@ int search(int a[],int key,int l,int h){
 }
 
 int main(){
-  int a[] = {10,25,30,41,52,60,65,78,80,93};
+  int a[] = {3,4,5,6,7,8,9,10};
   int key;
-  printf("Enter the number to be searched:");
+  
+  for (int i=0;i<sizeof(a)/sizeof(a[0]);i++){
+    printf(" |%d| ",a[i]);
+  }
+  
+  printf("\nEnter the number to be searched:");
   scanf("%d",&key);
   int index = search(a,key,0,(sizeof(a)/sizeof(a[0]))-1);
 

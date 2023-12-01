@@ -35,14 +35,21 @@ void quick_sort(int a[],int lb,int ub){
 }
 
 int main(){
-  int a[] = {36,10,45,20,82,7,68,25};
+  int a[] = {36,90,23,45,62,78,12};
   int n = sizeof(a)/sizeof(a[0]);
+
+  printf("Before sorting:\n");
+  for (int i = 0; i < n; i++) {
+    printf("%d ", a[i]);
+  }
+
 
   quick_sort(a,0,n-1);
 
-  for (int i=0;i<n;i++){
-    printf("%d\n",a[i]);
+  printf("\nAfter sorting:\n");
+  for (int i = 0; i < n; i++) {
+    printf("%d ", a[i]);
   }
-
+  printf("\n");
   return 0;
 }

@@ -8,7 +8,7 @@ int factorial(int n){
 
 int main(){
   int n;
-  printf("Enter the limit:");
+  printf("\n\nEnter the limit:");
   scanf("%d",&n);
   printf("Factorial:%d\n",factorial(n));
   return 0;

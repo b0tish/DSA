@@ -42,7 +42,7 @@ void display(struct stack *s){
 int main(){
   int num, choice;
   s.top = -1;
-  printf("1.Push\n2.Pop\n3.Display\n4.Exit\n");
+  printf("\n\n1.Push\n2.Pop\n3.Display\n4.Exit\n");
   while (1){
     printf("Enter the choice:");
     scanf("%d", &choice);

@@ -20,9 +20,9 @@ void dequeue(struct cqueue *q){
   if (q->rear == q->front){
     printf("Queue underflow\n");
   }else{
-    int x = q -> item[q->front];
-    printf("Deququed Item: %d\n",x);
     q -> front = (q->front+1)%SIZE;
+    int x = q -> item[q->front];
+    printf("Dequeued Item: %d\n",x);
   }
 }
 
@@ -48,9 +48,10 @@ int main()
   q.front = SIZE-1;
   q.rear = SIZE-1;
 
+  printf("\n1.Enqueue\n2.Dequeue\n3.Display\n4.Exit");
+
   while (1)
   {
-    printf("\n1.Enqueue\n2.Dequeue\n3.Display\n4.Exit");
     printf("\nEnter your choice:");
     scanf("%d",&choice);
     switch (choice) {

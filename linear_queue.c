@@ -45,9 +45,9 @@ int main()
   q.front = 0;
   q.rear = -1;
 
+  printf("\n1.Enqueue\n2.Dequeue\n3.Display\n4.Exit");
   while (1)
   {
-    printf("\n1.Enqueue\n2.Dequeue\n3.Display\n4.Exit");
     printf("\nEnter your choice:");
     scanf("%d",&choice);
     switch (choice) {
